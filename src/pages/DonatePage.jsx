@@ -32,8 +32,8 @@ function DonatePage() {
     setLoadingPayment(false); 
 
     try {
-      // *** USE LIVE URL HERE ***
-      await axios.post('http://faizan8108.pythonanywhere.com/api/save-donation/', { 
+      // *** USE HTTPS URL HERE ***
+      await axios.post('https://faizan8108.pythonanywhere.com/api/save-donation/', { 
          name: name, 
          email: email, 
          amount_inr: amount, 
@@ -65,19 +65,17 @@ function DonatePage() {
     const scriptLoaded = await loadRazorpayScript('https://checkout.razorpay.com/v1/checkout.js');
     if (!scriptLoaded) {
       setMessage({ type: 'danger', text: 'Payment gateway failed to load. Please check your connection.' });
-      setLoadingPayment(false);
-      return;
+      setLoadingPayment(false); return;
     }
      if (!window.Razorpay) {
        setMessage({ type: 'danger', text: 'Payment gateway object not found. Please try refreshing.' });
-       setLoadingPayment(false);
-       return;
+       setLoadingPayment(false); return;
     }
 
     try {
-      // *** USE LIVE URL HERE ***
+      // *** USE HTTPS URL HERE ***
       const { data: order } = await axios.post(
-        'http://faizan8108.pythonanywhere.com/api/create-razorpay-order/',
+        'https://faizan8108.pythonanywhere.com/api/create-razorpay-order/',
         {
           amount: amount,
           name: name,
@@ -121,21 +119,10 @@ function DonatePage() {
           <p>Your contribution makes a world of difference.</p>
           {message && <Alert variant={message.type}>{message.text}</Alert>}
           <Form onSubmit={submitHandler}>
-             <Form.Group className="mb-3">
-              <Form.Label>Donation Amount (INR)</Form.Label>
-              <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} min="1" required />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </Form.Group>
-            <Button variant="success" type="submit" className="w-100" disabled={loadingPayment}>
-              {loadingPayment ? 'Processing...' : 'Donate Now'}
-            </Button>
+             <Form.Group className="mb-3"> <Form.Label>Donation Amount (INR)</Form.Label> <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} min="1" required /> </Form.Group>
+            <Form.Group className="mb-3"> <Form.Label>Full Name</Form.Label> <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} required /> </Form.Group>
+            <Form.Group className="mb-3"> <Form.Label>Email Address</Form.Label> <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /> </Form.Group>
+            <Button variant="success" type="submit" className="w-100" disabled={loadingPayment}> {loadingPayment ? 'Processing...' : 'Donate Now'} </Button>
           </Form>
         </Col>
       </Row>

@@ -11,8 +11,8 @@ function MediaGalleryPage() {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        // *** USE LIVE URL HERE ***
-        const response = await axios.get('http://faizan8108.pythonanywhere.com/api/media/');
+        // *** USE HTTPS URL HERE ***
+        const response = await axios.get('https://faizan8108.pythonanywhere.com/api/media/');
         setMediaItems(response.data);
       } catch (error) {
         console.error("There was an error fetching the media!", error);

@@ -11,8 +11,8 @@ function ProjectsPage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // *** USE LIVE URL HERE ***
-        const response = await axios.get('http://faizan8108.pythonanywhere.com/api/projects/');
+        // *** USE HTTPS URL HERE ***
+        const response = await axios.get('https://faizan8108.pythonanywhere.com/api/projects/');
         
         setProjects(response.data);
       } catch (error) {

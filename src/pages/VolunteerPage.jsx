@@ -15,8 +15,8 @@ function VolunteerPage() {
     setMessage(null); 
 
     try {
-      // *** USE LIVE URL HERE ***
-      const response = await axios.post('http://faizan8108.pythonanywhere.com/api/volunteer/', {
+      // *** USE HTTPS URL HERE ***
+      const response = await axios.post('https://faizan8108.pythonanywhere.com/api/volunteer/', {
         full_name: fullName,
         email: email,
         reason: reason,

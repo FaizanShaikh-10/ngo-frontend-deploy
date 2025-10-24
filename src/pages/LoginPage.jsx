@@ -18,8 +18,8 @@ function LoginPage() {
     setError(null);
 
     try {
-      // *** USE LIVE URL HERE ***
-      const response = await axios.post('http://faizan8108.pythonanywhere.com/api/login/', {
+      // *** USE HTTPS URL HERE ***
+      const response = await axios.post('https://faizan8108.pythonanywhere.com/api/login/', {
         username: username, 
         password: password,
       });
@@ -48,27 +48,13 @@ function LoginPage() {
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="username" className="mb-3">
               <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text" 
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
+              <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} required />
             </Form.Group>
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </Form.Group>
-            <Button variant="primary" type="submit" className="mt-3 w-100">
-              Login
-            </Button>
+            <Button variant="primary" type="submit" className="mt-3 w-100"> Login </Button>
           </Form>
         </Col>
       </Row>

@@ -11,8 +11,8 @@ function BlogPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // *** USE LIVE URL HERE ***
-        const response = await axios.get('http://faizan8108.pythonanywhere.com/api/posts/');
+        // *** USE HTTPS URL HERE ***
+        const response = await axios.get('https://faizan8108.pythonanywhere.com/api/posts/');
         
         setPosts(response.data);
       } catch (error) {

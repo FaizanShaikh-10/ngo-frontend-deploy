@@ -1,56 +1,42 @@
 // src/context/AuthContext.jsx
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios'; // We'll need axios later for logout
+import axios from 'axios';
 
 // 1. Create the Context
 const AuthContext = createContext(null);
 
 // 2. Create the Provider Component
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('authToken')); // Load token from localStorage initially
-  const [user, setUser] = useState(null); // Optional: Store user details if needed later
+  // Load token from localStorage initially
+  const [token, setToken] = useState(localStorage.getItem('authToken')); 
+  const [user, setUser] = useState(null); 
 
   useEffect(() => {
-    // If we have a token, we could potentially fetch user details here
-    // For now, just having the token means the user is "logged in"
     if (token) {
-      // You might want to verify the token with the backend here in a real app
-      // For simplicity, we assume the token is valid if it exists
-      // You could decode a JWT token to get user info if you switch to JWT later
+      // Set the default authorization header for ALL requests
+      axios.defaults.headers.common['Authorization'] = `Token ${token}`;
       setUser({ username: 'Admin' }); // Placeholder user object
     } else {
+      // Clear the header if no token exists
+      delete axios.defaults.headers.common['Authorization'];
       setUser(null);
     }
-    // Set axios default header (optional but convenient)
-    if (token) {
-        axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-    } else {
-        delete axios.defaults.headers.common['Authorization'];
-    }
+    // Dependency array ensures this runs when 'token' changes
   }, [token]);
 
   // Function to handle login (called from LoginPage)
   const loginAction = (newToken) => {
     localStorage.setItem('authToken', newToken); // Save token to localStorage
     setToken(newToken);
-    // User state will update via useEffect
   };
 
   // Function to handle logout
   const logoutAction = () => {
-    localStorage.removeItem('authToken'); // Remove token from localStorage
+    // Clear the token and redirect to login page (we don't need a separate API call yet)
+    localStorage.removeItem('authToken'); 
     setToken(null);
-    setUser(null);
-    // --- Optional: Call backend logout endpoint ---
-    // You might want to invalidate the token on the server too
-    // try {
-    //   await axios.post('http://127.0.0.1:8000/api/logout/'); // We'll create this later
-    // } catch (error) {
-    //   console.error("Error logging out on server:", error);
-    // }
-    // Redirect to login page (can be done here or in Header component)
-    window.location.href = '/login'; // Simple redirect for now
+    window.location.href = '/login'; 
   };
 
   // The value provided to consuming components

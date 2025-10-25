@@ -1,15 +1,47 @@
-// src/App.jsx (Minimal for deployment test)
+// src/App.jsx (Full version)
 
-import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
+// Import Layout Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+// Import Pages
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ProjectsPage from './pages/ProjectsPage';
+import BlogPage from './pages/BlogPage';
+import MediaGalleryPage from './pages/MediaGalleryPage';
+import VolunteerPage from './pages/VolunteerPage';
+import ContactPage from './pages/ContactPage';
+import DonatePage from './pages/DonatePage';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
-    <div style={{ padding: '50px', textAlign: 'center', backgroundColor: '#f0f0f0' }}>
-      <h1>Deployment Test Success!</h1>
-      <p>The core application is running without crashing.</p>
-      <p>We can now re-enable routing and features.</p>
-      <a href="/login" style={{ textDecoration: 'none', color: 'blue' }}>Go to Login Path</a>
-    </div>
+    <>
+      <Header />
+      <main className="py-3">
+        <Container>
+          <Routes>
+            {/* All your routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/media" element={<MediaGalleryPage />} />
+            <Route path="/volunteer" element={<VolunteerPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Routes>
+        </Container>
+      </main>
+      <Footer />
+    </>
   );
 }
 

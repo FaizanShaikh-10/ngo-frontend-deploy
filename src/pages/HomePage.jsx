@@ -13,7 +13,7 @@ function HomePage() {
     const fetchProjects = async () => {
       try {
         // Fetch projects from your API
-        const response = await axios.get('http://127.0.0.1:8000/api/projects/');
+        const response = await axios.get('https://faizan8108.pythonanywhere.com/api/projects/');
         // Take the first 3 projects as "featured" (you can change this logic later)
         setFeaturedProjects(response.data.slice(0, 3));
       } catch (error) {

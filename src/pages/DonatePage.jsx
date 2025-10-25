@@ -86,7 +86,7 @@ function DonatePage() {
       if (!order || !order.id) { throw new Error("Invalid order response from server"); }
 
       const options = {
-        key: 'rzp_test_RW7KVVYYEV2WVMQ', // Your Key ID
+        key: 'rzp_test_RW7w2dlCFf6xz4', // Your Key ID
         amount: order.amount,           
         currency: order.currency,
         name: 'NGO Website Donation',

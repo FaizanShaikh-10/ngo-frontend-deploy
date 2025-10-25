@@ -1,5 +1,21 @@
 // src/components/Header.jsx
 
+// --- IMPORTS ARE NEEDED HERE ---
+import React from 'react'; // Import React (though often implicit now)
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+// --- END IMPORTS ---
+
+function Header() {
+  const { isLoggedIn, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  // The 'return' statement MUST be INSIDE the function
   return (
     <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect className="py-3">
       <Container>
@@ -8,9 +24,8 @@
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {/* Use me-auto to push everything else to the right */}
           <Nav className="me-auto">
-            {/* *** USE mx-3 INSTEAD OF mx-2 *** */}
+            {/* Using mx-3 for spacing */}
             <Nav.Link as={Link} to="/" className="mx-3">Home</Nav.Link>
             <Nav.Link as={Link} to="/about" className="mx-3">About Us</Nav.Link>
             <Nav.Link as={Link} to="/projects" className="mx-3">Projects</Nav.Link>
@@ -19,8 +34,6 @@
             <Nav.Link as={Link} to="/volunteer" className="mx-3">Volunteer</Nav.Link>
             <Nav.Link as={Link} to="/contact" className="mx-3">Contact</Nav.Link>
           </Nav>
-
-          {/* Keep Auth links and Donate button separate on the right */}
           <Nav className="ms-auto align-items-center">
             {isLoggedIn ? (
               <>
@@ -32,15 +45,16 @@
                 </Button>
               </>
             ) : (
-              // Also add margin to login link if needed
               <Nav.Link as={Link} to="/login" className="mx-3">Login</Nav.Link>
             )}
             <Link to="/donate">
               <Button variant="success">Donate Now</Button>
             </Link>
           </Nav>
-
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
+}
+
+export default Header;

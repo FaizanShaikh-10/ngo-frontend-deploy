@@ -39,23 +39,45 @@ function LoginPage() {
     }
   };
 
-   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col xs={12} md={6}>
-          <h1>Admin Login</h1>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="username" className="mb-3">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-            </Form.Group>
-            <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            </Form.Group>
-            <Button variant="primary" type="submit" className="mt-3 w-100"> Login </Button>
-          </Form>
+   // src/pages/LoginPage.jsx (The return block)
+
+  return (
+    <Container className="my-5">
+      <Row className="justify-content-md-center">
+        <Col xs={12} md={6} lg={5}> {/* Use a slightly smaller column for focus */}
+          <Card className="p-4 shadow-lg"> {/* Add padding and a subtle shadow */}
+            <Card.Body>
+              <h1 className="text-center mb-4">Admin Login</h1>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <Form onSubmit={submitHandler}>
+                <Form.Group controlId="username" className="mb-3">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text" 
+                    placeholder="Enter username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="mt-4 w-100">
+                  Login
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>

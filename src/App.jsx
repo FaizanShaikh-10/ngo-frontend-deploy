@@ -1,15 +1,15 @@
-// src/App.jsx
+// src/App.jsx (Minimal for deployment test)
 
 import React from 'react';
-import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-    // This is the simplest possible component. If this fails, the error is in main.jsx or a global dependency.
-    <Container className="p-5">
+    <div style={{ padding: '50px', textAlign: 'center', backgroundColor: '#f0f0f0' }}>
       <h1>Deployment Test Success!</h1>
-      <p>This is a temporary test page.</p>
-    </Container>
+      <p>The core application is running without crashing.</p>
+      <p>We can now re-enable routing and features.</p>
+      <a href="/login" style={{ textDecoration: 'none', color: 'blue' }}>Go to Login Path</a>
+    </div>
   );
 }
 

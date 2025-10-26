@@ -67,9 +67,9 @@ function ContactPage() {
           </Form>
         </Col>
         <Col md={6}>
-          <h4>Our Office</h4> <p>123 NGO Street, Community City, 12345</p>
-          <h4>Email</h4> <p>contact@ngo-website.com</p>
-          <h4>Phone</h4> <p>+1 (234) 567-890</p>
+          <h4>Our Office</h4> <p>502 5th Floor, Sunshine Plaza, Kailash Lassi Lane, near Dadar Railway Station, Dadar East, Dadar, Mumbai, Maharashtra 400014</p>
+          <h4>Email</h4> <p>faizan810819@gmail.com</p>
+          <h4>Phone</h4> <p>+91 81081 95535</p>
           <div className="mt-4">
             <iframe
               src="https://maps.google.com/maps?q=new%20delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"

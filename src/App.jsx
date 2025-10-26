@@ -23,8 +23,8 @@ function App() {
   return (
     <>
       <Header />
-      <main className="py-3">
-        <Container>
+      <main className="py-3 d-flex flex-column min-vh-100">
+        <Container fluid className="flex-grow-1">
           <Routes>
             {/* All your routes */}
             <Route path="/" element={<HomePage />} />

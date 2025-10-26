@@ -26,7 +26,7 @@ function HomePage() {
   }, []);
 
   return (
-  <Container fluid className="mt-5 px-md-5">
+  <Container fluid className="mt-5">
       {/* Section 1: Welcome/Mission Overview */}
       <Row className="text-center mb-5">
         <Col>

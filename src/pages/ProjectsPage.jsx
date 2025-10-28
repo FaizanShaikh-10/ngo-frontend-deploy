@@ -43,7 +43,7 @@ function ProjectsPage() {
                 )}
                 <Card.Body>
                   <Card.Title>{project.title}</Card.Title>
-                  <Card.Text>{project.description.substring(0, 100)}...</Card.Text>
+                  <Card.Text>{project.description.substring(0, 600)}...</Card.Text>
                 </Card.Body>
               </Card>
             </Col>

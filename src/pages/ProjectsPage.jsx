@@ -44,6 +44,21 @@ function ProjectsPage() {
                 <Card.Body>
                   <Card.Title>{project.title}</Card.Title>
                   <Card.Text>{project.description.substring(0, 600)}...</Card.Text>
+                  {project.goals && (
+                    <Card.Text>
+                      <strong>Goals:</strong> {project.goals}
+                    </Card.Text>
+                  )}
+                  {project.beneficiaries && (
+                    <Card.Text>
+                      <strong>Beneficiaries:</strong> {project.beneficiaries}
+                    </Card.Text>
+                  )}
+                  {project.location && (
+                    <Card.Text>
+                      <strong>Location:</strong> {project.location}
+                    </Card.Text>
+                  )}
                 </Card.Body>
               </Card>
             </Col>

@@ -43,7 +43,7 @@ function BlogPage() {
                 )}
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
-                  <Card.Text>{post.content.substring(0, 150)}...</Card.Text>
+                  <Card.Text>{post.content.substring(0, 450)}...</Card.Text>
                 </Card.Body>
               </Card>
             </Col>

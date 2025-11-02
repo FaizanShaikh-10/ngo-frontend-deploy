@@ -89,7 +89,7 @@ function DonatePage() {
         key: 'rzp_test_RW7w2dlCFf6xz4', // Your Key ID
         amount: order.amount,           
         currency: order.currency,
-        name: 'NGO Website Donation',
+        name: 'Light After Rain Donation',
         description: 'Support Our Cause',
         order_id: order.id,            
         handler: handlePaymentSuccess,   

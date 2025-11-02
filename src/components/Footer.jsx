@@ -1,14 +1,15 @@
 // src/components/Footer.jsx
-
 import { Container, Row, Col } from 'react-bootstrap';
 
 function Footer() {
   return (
-    <footer className="bg-dark text-white mt-5 p-4 text-center">
+    // Use the `bg-dark` and `text-white` classes from your theme
+    <footer className="bg-dark text-white mt-auto p-4 text-center"> 
       <Container>
         <Row>
           <Col>
-            <p>&copy; {new Date().getFullYear()} NGO Website. All Rights Reserved.</p>
+            {/* <-- CHANGED HERE --> */}
+            <p>&copy; {new Date().getFullYear()} Light After Rain. All Rights Reserved.</p> 
           </Col>
         </Row>
       </Container>

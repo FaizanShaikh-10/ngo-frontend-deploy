@@ -1,5 +1,4 @@
 // src/pages/HomePage.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
@@ -12,29 +11,24 @@ function HomePage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Fetch projects from your API
         const response = await axios.get('https://faizan8108.pythonanywhere.com/api/projects/');
-        // Take the first 3 projects as "featured" (you can change this logic later)
         setFeaturedProjects(response.data.slice(0, 3));
       } catch (error) {
         console.error("Error fetching projects for homepage:", error);
       }
       setLoading(false);
     };
-
     fetchProjects();
   }, []);
 
   return (
-  <Container fluid className="mt-5">
-      {/* Section 1: Welcome/Mission Overview */}
+    <Container fluid className="mt-5 px-md-5">
       <Row className="text-center mb-5">
         <Col>
-          <h1>Welcome to Our NGO</h1>
+          <h1>Welcome to Light After Rain</h1> {/* <-- CHANGED HERE */}
           <p className="lead">
             Making a difference through education, healthcare, and empowerment.
           </p>
-          {/* You can add more mission/vision text here */}
           <Link to="/about">
             <Button variant="outline-primary" className="mt-3">Learn More About Us</Button>
           </Link>

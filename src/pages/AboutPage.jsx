@@ -41,12 +41,12 @@ function AboutPage() {
 
   return (
     <Container fluid className="mt-5 px-md-5">
-      {/* Header */}
       <Row className="mb-5 text-center">
         <Col>
-          <h1 className="fw-bold">About Us</h1>
-          <p className="lead text-secondary">
-            Welcome to our NGO! We are a passionate team dedicated to making a difference.
+          <h1>About Us</h1>
+          <p className="lead">
+            {/* <-- CHANGED HERE --> */}
+            Welcome to Light After Rain! We are a passionate team dedicated to making a difference...
           </p>
         </Col>
       </Row>

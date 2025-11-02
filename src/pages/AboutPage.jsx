@@ -89,7 +89,7 @@ function AboutPage() {
                       {member.image && (
                         <Card.Img
                           variant="top"
-                          src={`https://faizan8108.pythonanywhere.com${member.image}`}
+                          src={member.image}
                           alt={member.name}
                           className="team-image mx-auto mt-3"
                         />

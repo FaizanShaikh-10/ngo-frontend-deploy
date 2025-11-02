@@ -170,7 +170,7 @@ function HomePage() {
       </Row>
 
       {/* ===== Impact Statistics ===== */}
-       <Row className="bg-light p-5 rounded mb-5 text-center shadow-sm">
+      <Row className="bg-light p-5 rounded mb-5 text-center shadow-sm">
         <Col>
           <h2 className="fw-semibold mb-4">Our Impact</h2>
           <Row>
@@ -189,6 +189,27 @@ function HomePage() {
           </Row>
         </Col>
       </Row>
+
+      {/* ===== Join Us Section ===== */}
+      <section
+        className="text-center text-white py-5"
+        style={{ backgroundColor: "#0d6efd" }}
+      >
+        <div className="container">
+          <h2 className="fw-bold mb-3">Join Us in Making a Difference</h2>
+          <p className="mb-4">
+            Whether you want to donate, volunteer, or partner with us, every contribution helps.
+          </p>
+          <div>
+            <a href="/donate" className="btn btn-light btn-lg mx-2">
+              Donate Now
+            </a>
+            <a href="/volunteer" className="btn btn-outline-light btn-lg mx-2">
+              Volunteer With Us
+            </a>
+          </div>
+        </div>
+      </section>
     </Container>
   );
 }

@@ -1,9 +1,9 @@
 // src/pages/ProjectDetailPage.jsx
 
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col, Badge, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner, Badge } from "react-bootstrap";
 
 function ProjectDetailPage() {
   const { id } = useParams();
@@ -23,84 +23,74 @@ function ProjectDetailPage() {
         setLoading(false);
       }
     };
-
     fetchProject();
   }, [id]);
 
-  if (loading) return <p className="text-center mt-5">Loading project details...</p>;
-  if (!project) return <p className="text-center mt-5">Project not found.</p>;
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" />
+        <p>Loading project details...</p>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return <p className="text-center mt-5">Project not found.</p>;
+  }
 
   return (
-    <Container className="mt-5 px-md-5">
+    <Container className="my-5">
       <Row className="justify-content-center">
-        <Col lg={10}>
-          <Card className="shadow-sm border-0">
+        <Col md={8}>
+          <Card className="shadow-sm">
             {project.image && (
               <Card.Img
                 variant="top"
                 src={
-                  project.image?.startsWith("http")
+                  project.image.startsWith("http")
                     ? project.image
                     : `https://faizan8108.pythonanywhere.com${project.image}`
                 }
-                alt={project.title}
-                style={{
-                  height: "400px",
-                  objectFit: "cover",
-                  borderTopLeftRadius: "0.5rem",
-                  borderTopRightRadius: "0.5rem",
-                }}
+                style={{ height: "400px", objectFit: "cover" }}
               />
             )}
             <Card.Body>
               <div className="mb-3">
-                {project.category && (
-                  <Badge bg="secondary" className="me-2">
-                    {project.category}
-                  </Badge>
-                )}
-                {project.status && (
-                  <Badge
-                    bg={
-                      project.status === "Completed"
-                        ? "success"
-                        : project.status === "Ongoing"
-                        ? "info"
-                        : "warning"
-                    }
-                  >
-                    {project.status}
-                  </Badge>
-                )}
+                <Badge bg="secondary" className="me-2">
+                  {project.category || "Uncategorized"}
+                </Badge>
+                <Badge bg="success">{project.status || "Active"}</Badge>
               </div>
 
-              <Card.Title className="fw-bold text-primary fs-3 mb-3">
+              <Card.Title className="fw-bold fs-3 mb-3 text-primary">
                 {project.title}
               </Card.Title>
-              <Card.Text className="fs-6 text-muted mb-4">
+              <Card.Text className="text-muted mb-3">
                 {project.description}
               </Card.Text>
 
-              {/* Optional extra info */}
-              {project.start_date && (
-                <p className="text-secondary mb-1">
-                  <strong>Start Date:</strong> {project.start_date}
-                </p>
+              {project.goals && (
+                <Card.Text>
+                  <strong>Goals:</strong> {project.goals}
+                </Card.Text>
               )}
-              {project.end_date && (
-                <p className="text-secondary">
-                  <strong>End Date:</strong> {project.end_date}
-                </p>
+              {project.beneficiaries && (
+                <Card.Text>
+                  <strong>Beneficiaries:</strong> {project.beneficiaries}
+                </Card.Text>
+              )}
+              {project.location && (
+                <Card.Text>
+                  <strong>Location:</strong> {project.location}
+                </Card.Text>
               )}
 
-              <div className="mt-4">
-                <Link to="/projects">
-                  <Button variant="outline-primary" className="me-2">
-                    ← Back to Projects
-                  </Button>
-                </Link>
-                <Button variant="primary">Support This Project</Button>
-              </div>
+              <Link to="/projects">
+                <Button variant="primary" className="mt-3">
+                  Back to All Projects
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>

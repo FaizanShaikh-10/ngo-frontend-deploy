@@ -38,6 +38,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
+            
           </Routes>
         </Container>
       </main>

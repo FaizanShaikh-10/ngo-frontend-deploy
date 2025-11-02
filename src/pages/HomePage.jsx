@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./HomePage.css"; // 👈 optional if you want hover effects or animations
+import "./HomePage.css"; // optional
 
 function HomePage() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -35,7 +35,7 @@ function HomePage() {
 
   return (
     <Container fluid className="mt-5 px-md-5">
-      {/* --- DYNAMIC BANNER SLIDER --- */}
+      {/* ===== Dynamic Banner Carousel ===== */}
       {!loading && banners.length > 0 && (
         <Row className="mb-5">
           <Col>
@@ -69,7 +69,31 @@ function HomePage() {
         </Row>
       )}
 
-      {/* --- WELCOME / MISSION SECTION --- */}
+      {/* ===== Vision & Mission Section ===== */}
+      <Row
+        className="text-center py-5 mb-5"
+        style={{ backgroundColor: "#f8fafc", borderRadius: "12px" }}
+      >
+        <Col>
+          <h2 className="fw-bold mb-4 text-primary">Our Vision & Mission</h2>
+          <div className="mx-auto" style={{ maxWidth: "850px", color: "#475569" }}>
+            <h4 className="fw-semibold text-dark">Our Vision</h4>
+            <p className="mb-4">
+              To build a world where every individual rises with dignity and opportunity after
+              hardship — spreading light, hope, and empowerment in every community.
+            </p>
+
+            <h4 className="fw-semibold text-dark">Our Mission</h4>
+            <p>
+              Light After Rain works to uplift vulnerable communities by providing education,
+              healthcare, and skill development. We believe in sustainable progress driven by
+              compassion, equality, and inclusion.
+            </p>
+          </div>
+        </Col>
+      </Row>
+
+      {/* ===== Welcome Section ===== */}
       <Row className="text-center mb-5">
         <Col>
           <h1 className="fw-bold">Welcome to Light After Rain</h1>
@@ -84,7 +108,7 @@ function HomePage() {
         </Col>
       </Row>
 
-      {/* --- FEATURED PROJECTS SECTION --- */}
+      {/* ===== Featured Projects ===== */}
       <Row className="mb-5">
         <Col>
           <h2 className="text-center fw-semibold mb-4">Featured Campaigns</h2>
@@ -98,21 +122,20 @@ function HomePage() {
                   <Card className="h-100 shadow-sm border-0 project-card">
                     {project.image && (
                       <Card.Img
-                      variant="top"
-                      src={
-                        project.image?.startsWith("http")
-                          ? project.image
-                          : `https://faizan8108.pythonanywhere.com${project.image}`
-                      }
-                      style={{
-                        height: "220px",
-                        objectFit: "cover",
-                        borderTopLeftRadius: "0.5rem",
-                        borderTopRightRadius: "0.5rem",
-                     }}
-                     alt={project.title}
-
-                   />
+                        variant="top"
+                        src={
+                          project.image?.startsWith("http")
+                            ? project.image
+                            : `https://faizan8108.pythonanywhere.com${project.image}`
+                        }
+                        style={{
+                          height: "220px",
+                          objectFit: "cover",
+                          borderTopLeftRadius: "0.5rem",
+                          borderTopRightRadius: "0.5rem",
+                        }}
+                        alt={project.title}
+                      />
                     )}
                     <Card.Body>
                       <Card.Title className="fw-bold text-primary">
@@ -142,7 +165,7 @@ function HomePage() {
         </Col>
       </Row>
 
-      {/* --- IMPACT STATISTICS --- */}
+      {/* ===== Impact Statistics ===== */}
       <Row className="bg-light p-5 rounded mb-5 text-center shadow-sm">
         <Col>
           <h2 className="fw-semibold mb-4">Our Impact</h2>

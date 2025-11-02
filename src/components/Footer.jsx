@@ -5,24 +5,6 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="bg-dark text-white pt-5 pb-3 mt-5">
-      {/* CTA Section */}
-      <section className="text-center py-5 bg-primary text-white mb-4">
-        <div className="container">
-          <h2 className="fw-bold mb-3">Join Us in Making a Difference</h2>
-          <p className="mb-4">
-            Whether you want to donate, volunteer, or partner with us, every contribution helps.
-          </p>
-          <div>
-            <Link to="/donate" className="btn btn-light btn-lg mx-2">
-              Donate Now
-            </Link>
-            <Link to="/volunteer" className="btn btn-outline-light btn-lg mx-2">
-              Volunteer With Us
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Footer Links Section */}
       <Container>
         <Row className="text-center text-md-start mb-4">
@@ -38,10 +20,26 @@ function Footer() {
           <Col md={3} className="mb-3">
             <h6 className="fw-bold">Quick Links</h6>
             <ul className="list-unstyled">
-              <li><Link to="/about" className="text-white text-decoration-none">About Us</Link></li>
-              <li><Link to="/projects" className="text-white text-decoration-none">Programs</Link></li>
-              <li><Link to="/contact" className="text-white text-decoration-none">Contact</Link></li>
-              <li><Link to="/donate" className="text-white text-decoration-none">Donate</Link></li>
+              <li>
+                <Link to="/about" className="text-white text-decoration-none">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="text-white text-decoration-none">
+                  Programs
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-white text-decoration-none">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/donate" className="text-white text-decoration-none">
+                  Donate
+                </Link>
+              </li>
             </ul>
           </Col>
 
@@ -49,9 +47,21 @@ function Footer() {
           <Col md={3} className="mb-3">
             <h6 className="fw-bold">Follow Us</h6>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-white text-decoration-none">Facebook</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Twitter</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Instagram</a></li>
+              <li>
+                <a href="#" className="text-white text-decoration-none">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-white text-decoration-none">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-white text-decoration-none">
+                  Instagram
+                </a>
+              </li>
             </ul>
           </Col>
 

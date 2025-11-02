@@ -44,7 +44,11 @@ function HomePage() {
                 <Carousel.Item key={banner.id}>
                   <img
                     className="d-block w-100"
-                    src={`https://faizan8108.pythonanywhere.com${banner.image_url}`}
+                    src={
+                      banner.image_url?.startsWith("http")
+                        ? banner.image_url
+                        : `https://faizan8108.pythonanywhere.com${banner.image_url}`
+                    }
                     alt={banner.title}
                     style={{
                       height: "480px",
@@ -166,7 +170,7 @@ function HomePage() {
       </Row>
 
       {/* ===== Impact Statistics ===== */}
-      <Row className="bg-light p-5 rounded mb-5 text-center shadow-sm">
+       <Row className="bg-light p-5 rounded mb-5 text-center shadow-sm">
         <Col>
           <h2 className="fw-semibold mb-4">Our Impact</h2>
           <Row>

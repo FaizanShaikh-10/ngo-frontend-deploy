@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Row, Col, Card, Button, Carousel } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Carousel, Badge } from "react-bootstrap"; // Added Badge
 import { Link } from "react-router-dom";
 import "./HomePage.css"; // optional
 
@@ -142,6 +142,28 @@ function HomePage() {
                       />
                     )}
                     <Card.Body>
+                      {/* 🟩 Added Category & Status */}
+                      <div className="mb-2">
+                        {project.category && (
+                          <Badge bg="secondary" className="me-2">
+                            {project.category}
+                          </Badge>
+                        )}
+                        {project.status && (
+                          <Badge
+                            bg={
+                              project.status === "Completed"
+                                ? "success"
+                                : project.status === "Ongoing"
+                                ? "info"
+                                : "warning"
+                            }
+                          >
+                            {project.status}
+                          </Badge>
+                        )}
+                      </div>
+
                       <Card.Title className="fw-bold text-primary">
                         {project.title}
                       </Card.Title>
@@ -150,6 +172,13 @@ function HomePage() {
                           ? `${project.description.substring(0, 100)}...`
                           : project.description}
                       </Card.Text>
+
+                      {/* 🟩 Added Read More button */}
+                      <Link to={`/projects/${project.id}`}>
+                        <Button variant="outline-primary" size="sm">
+                          Read More
+                        </Button>
+                      </Link>
                     </Card.Body>
                   </Card>
                 </Col>

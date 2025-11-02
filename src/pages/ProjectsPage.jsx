@@ -1,8 +1,9 @@
 // src/pages/ProjectsPage.jsx
 
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Card, Row, Col } from 'react-bootstrap';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Container, Card, Row, Col, Badge, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -11,9 +12,9 @@ function ProjectsPage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // *** USE HTTPS URL HERE ***
-        const response = await axios.get('https://faizan8108.pythonanywhere.com/api/projects/');
-        
+        const response = await axios.get(
+          "https://faizan8108.pythonanywhere.com/api/projects/"
+        );
         setProjects(response.data);
       } catch (error) {
         console.error("There was an error fetching the projects!", error);
@@ -22,43 +23,71 @@ function ProjectsPage() {
     };
 
     fetchProjects();
-  }, []); 
+  }, []);
 
-  if (loading) {
-    return <p>Loading projects...</p>;
-  }
+  if (loading) return <p>Loading projects...</p>;
 
   return (
-    <div>
-      <h1>Our Projects</h1>
-      <p>Here you'll see all ongoing and completed projects.</p>
+    <Container fluid className="mt-5 px-md-5">
+      <h1 className="fw-bold mb-3">Our Projects</h1>
+      <p className="text-secondary">
+        Explore our ongoing and completed initiatives that are creating real impact.
+      </p>
 
-      <Row>
+      <Row className="g-4">
         {projects.length > 0 ? (
-          projects.map(project => (
-            <Col key={project.id} sm={12} md={6} lg={4} className="mb-3">
-              <Card>
+          projects.map((project) => (
+            <Col key={project.id} sm={12} md={6} lg={4}>
+              <Card className="h-100 shadow-sm border-0">
                 {project.image && (
-                  <Card.Img variant="top" src={project.image} /> 
+                  <Card.Img
+                    variant="top"
+                    src={
+                      project.image?.startsWith("http")
+                        ? project.image
+                        : `https://faizan8108.pythonanywhere.com${project.image}`
+                    }
+                    style={{
+                      height: "230px",
+                      objectFit: "cover",
+                    }}
+                    alt={project.title}
+                  />
                 )}
-                <Card.Body>
-                  <Card.Title>{project.title}</Card.Title>
-                  <Card.Text>{project.description.substring(0, 600)}...</Card.Text>
-                  {project.goals && (
-                    <Card.Text>
-                      <strong>Goals:</strong> {project.goals}
-                    </Card.Text>
-                  )}
-                  {project.beneficiaries && (
-                    <Card.Text>
-                      <strong>Beneficiaries:</strong> {project.beneficiaries}
-                    </Card.Text>
-                  )}
-                  {project.location && (
-                    <Card.Text>
-                      <strong>Location:</strong> {project.location}
-                    </Card.Text>
-                  )}
+                <Card.Body className="d-flex flex-column">
+                  <div className="mb-2">
+                    {project.category && (
+                      <Badge bg="secondary" className="me-2">
+                        {project.category}
+                      </Badge>
+                    )}
+                    {project.status && (
+                      <Badge
+                        bg={
+                          project.status === "Completed"
+                            ? "success"
+                            : project.status === "Ongoing"
+                            ? "info"
+                            : "warning"
+                        }
+                      >
+                        {project.status}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <Card.Title className="fw-bold text-primary">{project.title}</Card.Title>
+                  <Card.Text className="text-muted small mb-3">
+                    {project.description.length > 150
+                      ? `${project.description.substring(0, 150)}...`
+                      : project.description}
+                  </Card.Text>
+
+                  <Link to={`/projects/${project.id}`} className="mt-auto">
+                    <Button variant="outline-primary" size="sm">
+                      Read More
+                    </Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -67,7 +96,7 @@ function ProjectsPage() {
           <p>No projects found. Go to your Django admin to add some!</p>
         )}
       </Row>
-    </div>
+    </Container>
   );
 }
 

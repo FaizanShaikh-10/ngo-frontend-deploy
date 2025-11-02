@@ -37,6 +37,7 @@ function App() {
             <Route path="/donate" element={<DonatePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/projects/:id" element={<ProjectDetailPage />} />
           </Routes>
         </Container>
       </main>

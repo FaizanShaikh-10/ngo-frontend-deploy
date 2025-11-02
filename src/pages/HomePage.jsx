@@ -98,15 +98,21 @@ function HomePage() {
                   <Card className="h-100 shadow-sm border-0 project-card">
                     {project.image && (
                       <Card.Img
-                        variant="top"
-                        src={`https://faizan8108.pythonanywhere.com${project.image}`}
-                        style={{
-                          height: "220px",
-                          objectFit: "cover",
-                          borderTopLeftRadius: "0.5rem",
-                          borderTopRightRadius: "0.5rem",
-                        }}
-                      />
+                      variant="top"
+                      src={
+                        project.image?.startsWith("http")
+                          ? project.image
+                          : `https://faizan8108.pythonanywhere.com${project.image}`
+                      }
+                      style={{
+                        height: "220px",
+                        objectFit: "cover",
+                        borderTopLeftRadius: "0.5rem",
+                        borderTopRightRadius: "0.5rem",
+                     }}
+                     alt={project.title}
+
+                   />
                     )}
                     <Card.Body>
                       <Card.Title className="fw-bold text-primary">

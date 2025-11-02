@@ -2,29 +2,26 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import './AboutPage.css'; // 👈 for custom hover effects (we’ll create this file next)
 
 function AboutPage() {
   const [aboutContent, setAboutContent] = useState({});
   const [coreValues, setCoreValues] = useState([]);
-  const [teamMembers, setTeamMembers] = useState([]);  // <-- Added this
+  const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        // 1️⃣ Fetch About Us content
         const contentResponse = await axios.get('https://faizan8108.pythonanywhere.com/api/about-content/');
         setAboutContent(contentResponse.data[0] || {});
 
-        // 2️⃣ Fetch Core Values
         const valuesResponse = await axios.get('https://faizan8108.pythonanywhere.com/api/core-values/');
         setCoreValues(valuesResponse.data);
 
-        // 3️⃣ Fetch Team Members (Correct endpoint)
         const teamResponse = await axios.get('https://faizan8108.pythonanywhere.com/api/team/');
         setTeamMembers(teamResponse.data);
-
       } catch (error) {
         console.error("Error fetching About Us content:", error);
       } finally {
@@ -36,7 +33,7 @@ function AboutPage() {
 
   if (loading) {
     return (
-      <Container className="mt-5">
+      <Container className="mt-5 text-center">
         <p>Loading About Us content...</p>
       </Container>
     );
@@ -44,28 +41,28 @@ function AboutPage() {
 
   return (
     <Container fluid className="mt-5 px-md-5">
-      {/* ---- Header Section ---- */}
+      {/* Header */}
       <Row className="mb-5 text-center">
         <Col>
-          <h1>About Us</h1>
-          <p className="lead">
-            Welcome to our NGO! We are a passionate team dedicated to making a difference...
+          <h1 className="fw-bold">About Us</h1>
+          <p className="lead text-secondary">
+            Welcome to our NGO! We are a passionate team dedicated to making a difference.
           </p>
         </Col>
       </Row>
 
       <Row>
-        {/* ---- Left Side: History + Core Values ---- */}
+        {/* ---- Left Side: History & Core Values ---- */}
         <Col lg={8}>
-          {/* 1️⃣ History Section */}
+          {/* 1️⃣ History */}
           <section className="mb-5">
-            <h2>Our History</h2>
+            <h2 className="fw-semibold mb-3">Our History</h2>
             <p>{aboutContent.history_text || "History content loading..."}</p>
           </section>
 
-          {/* 2️⃣ Core Values Section */}
+          {/* 2️⃣ Core Values */}
           <section className="mb-5">
-            <h2>Our Core Values</h2>
+            <h2 className="fw-semibold mb-3">Our Core Values</h2>
             {coreValues.length > 0 ? (
               <ul>
                 {coreValues.map(item => (
@@ -75,36 +72,40 @@ function AboutPage() {
                 ))}
               </ul>
             ) : (
-              <p>Core values not yet defined. Please add them in the CMS.</p>
+              <p>No core values added yet.</p>
             )}
           </section>
         </Col>
 
         {/* ---- Right Side: Team Section ---- */}
         <Col lg={4}>
-          <aside className="p-4 rounded shadow-sm" style={{ backgroundColor: 'var(--bs-tertiary-bg)' }}>
-            <h3 className="text-center mb-4">Our Team</h3>
-
-            {teamMembers.length > 0 ? (
-              teamMembers.map(member => (
-                <div key={member.id} className="mb-3 p-3 border rounded text-center">
-                  {/* Image (if available) */}
-                  {member.image && (
-                    <img
-                      src={`https://faizan8108.pythonanywhere.com${member.image}`}
-                      alt={member.name}
-                      style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }}
-                      className="mb-3"
-                    />
-                  )}
-                  <h5 className="mb-0 fw-bold text-primary">{member.name}</h5>
-                  <p className="text-secondary" style={{ fontSize: '0.9rem' }}>{member.title}</p>
-                  <p style={{ fontSize: '0.9rem' }}>{member.bio}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center">No team members added yet.</p>
-            )}
+          <aside>
+            <h3 className="text-center fw-bold mb-4">Meet Our Team</h3>
+            <Row className="g-4 justify-content-center">
+              {teamMembers.length > 0 ? (
+                teamMembers.map(member => (
+                  <Col md={12} key={member.id}>
+                    <Card className="team-card shadow-sm border-0 text-center">
+                      {member.image && (
+                        <Card.Img
+                          variant="top"
+                          src={`https://faizan8108.pythonanywhere.com${member.image}`}
+                          alt={member.name}
+                          className="team-image mx-auto mt-3"
+                        />
+                      )}
+                      <Card.Body>
+                        <Card.Title className="fw-bold text-primary mb-1">{member.name}</Card.Title>
+                        <Card.Subtitle className="text-muted mb-2">{member.title}</Card.Subtitle>
+                        <Card.Text className="small">{member.bio}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))
+              ) : (
+                <p className="text-center">No team members added yet.</p>
+              )}
+            </Row>
           </aside>
         </Col>
       </Row>

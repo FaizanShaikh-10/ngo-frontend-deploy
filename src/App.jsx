@@ -18,6 +18,8 @@ import ContactPage from './pages/ContactPage';
 import DonatePage from './pages/DonatePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+import ProjectDetailPage from "./pages/ProjectDetailPage";
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/media" element={<MediaGalleryPage />} />
             <Route path="/volunteer" element={<VolunteerPage />} />
@@ -37,7 +40,7 @@ function App() {
             <Route path="/donate" element={<DonatePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/projects/:id" element={<ProjectDetailPage />} />
+
             
           </Routes>
         </Container>

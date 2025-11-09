@@ -82,6 +82,17 @@ function ProjectsPage() {
                       ? `${project.description.substring(0, 150)}...`
                       : project.description}
                   </Card.Text>
+                  {project.project_timeline && (
+                  <p className="text-secondary small mb-1">
+                  <strong>Timeline:</strong> {project.project_timeline}
+                  </p>
+                  )}
+
+                   {project.impact_statistics && (
+                  <p className="text-secondary small mb-2">
+                    <strong>Impact:</strong> {project.impact_statistics}
+                    </p>
+                  )}
 
                   <Link to={`/projects/${project.id}`} className="mt-auto">
                     <Button variant="outline-primary" size="sm">

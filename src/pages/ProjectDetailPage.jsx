@@ -85,6 +85,17 @@ function ProjectDetailPage() {
                   <strong>Location:</strong> {project.location}
                 </Card.Text>
               )}
+              {project.project_timeline && (
+              <Card.Text>
+              <strong>Project Timeline:</strong> {project.project_timeline}
+              </Card.Text>
+              )}
+
+              {project.impact_statistics && (
+              <Card.Text>
+              <strong>Impact Statistics:</strong> {project.impact_statistics}
+              </Card.Text>
+               )}
 
               <Link to="/projects">
                 <Button variant="primary" className="mt-3">

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Container, Card, Row, Col, Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../services/api";
+import "../styles/project.css";
 
 function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -15,41 +16,34 @@ function ProjectsPage() {
         const response = await api.get("/projects/");
         setProjects(response.data);
       } catch (error) {
-        console.error("❌ Error fetching projects:", error);
+        console.error("Error fetching projects", error);
       }
       setLoading(false);
     };
-
     fetchProjects();
   }, []);
 
-  if (loading) return <p>Loading projects...</p>;
+  if (loading) return <p>Loading projects…</p>;
 
   return (
     <Container fluid className="mt-5 px-md-5">
       <h1 className="fw-bold mb-3">Our Projects</h1>
       <p className="text-secondary">
-        Explore our ongoing and completed initiatives that are creating real impact.
+        Explore ongoing & completed initiatives making real impact.
       </p>
 
       <Row className="g-4">
         {projects.length > 0 ? (
           projects.map((project) => (
             <Col key={project.slug} sm={12} md={6} lg={4}>
-              <Card className="h-100 shadow-sm border-0">
-
+              <Card className="project-card h-100 border-0">
                 {project.image && (
                   <Card.Img
-                    variant="top"
                     src={
                       project.image.startsWith("http")
                         ? project.image
                         : `https://faizan8108.pythonanywhere.com${project.image}`
                     }
-                    style={{
-                      height: "230px",
-                      objectFit: "cover",
-                    }}
                     alt={project.title}
                   />
                 )}
@@ -61,14 +55,15 @@ function ProjectsPage() {
                         {project.category}
                       </Badge>
                     )}
+
                     {project.status && (
                       <Badge
-                        bg={
+                        className={
                           project.status === "Completed"
-                            ? "success"
+                            ? "badge-completed"
                             : project.status === "Ongoing"
-                            ? "info"
-                            : "warning"
+                            ? "badge-ongoing"
+                            : "badge-upcoming"
                         }
                       >
                         {project.status}
@@ -76,24 +71,16 @@ function ProjectsPage() {
                     )}
                   </div>
 
-                  <Card.Title className="fw-bold text-primary">
+                  <Card.Title className="project-card-title">
                     {project.title}
                   </Card.Title>
 
-                  <Card.Text className="text-muted small mb-3">
-                    {project.description.length > 150
-                      ? `${project.description.substring(0, 150)}...`
+                  <Card.Text className="project-card-desc">
+                    {project.description.length > 120
+                      ? `${project.description.substring(0, 120)}…`
                       : project.description}
                   </Card.Text>
 
-                  {/* ✅ tags preview */}
-                  {project.tags?.length > 0 && (
-                    <p className="small text-muted">
-                      <strong>Tags:</strong> {project.tags.join(", ")}
-                    </p>
-                  )}
-
-                  {/* ✅ progress preview */}
                   {project.progress_percent !== null && (
                     <p className="small text-primary fw-semibold">
                       Progress: {project.progress_percent}%
@@ -110,7 +97,7 @@ function ProjectsPage() {
             </Col>
           ))
         ) : (
-          <p>No projects found. Add new projects in Admin.</p>
+          <p>No projects found.</p>
         )}
       </Row>
     </Container>

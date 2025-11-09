@@ -1,0 +1,143 @@
+/* ============================
+   PROJECT DETAIL PAGE
+============================ */
+
+/* Title spacing */
+.project-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+/* Tag badges styling */
+.project-tags {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Main image */
+.project-main-image {
+  height: 420px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.8rem;
+  color: #333;
+}
+
+/* Media Grid */
+.project-media img {
+  border-radius: 6px;
+  width: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.project-media img:hover {
+  transform: scale(1.03);
+}
+
+/* Testimonials */
+.testimonial-box {
+  border-left: 4px solid #0d6efd;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+/* Partner logos */
+.partner-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #eee;
+}
+
+.partner-name {
+  font-size: 0.85rem;
+  margin-top: 6px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Impact Metric Box */
+.metric-box {
+  padding: 8px 12px;
+  background: #f1f8ff;
+  border-left: 4px solid #0d6efd;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+/* Back Button */
+.back-btn {
+  margin-top: 20px;
+}
+
+
+/* ============================
+   PROJECT CARD LIST PAGE
+============================ */
+
+.project-card {
+  transition: 0.25s !important;
+  border-radius: 10px !important;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.11);
+}
+
+/* Project card image */
+.project-card img {
+  height: 230px !important;
+  object-fit: cover !important;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Title on card */
+.project-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0d6efd;
+  min-height: 45px;
+}
+
+/* Description preview */
+.project-card-desc {
+  font-size: 0.9rem;
+  color: #666;
+  min-height: 60px;
+}
+
+/* Status Badge */
+.badge-completed {
+  background-color: #28a745 !important;
+}
+.badge-ongoing {
+  background-color: #17a2b8 !important;
+}
+.badge-upcoming {
+  background-color: #ffc107 !important;
+}
+
+/* Impact section */
+.impact-block {
+  background: #f8fafc;
+  padding: 35px 10px;
+  border-radius: 8px;
+}
+.impact-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #28a745;
+}

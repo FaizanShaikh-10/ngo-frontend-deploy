@@ -1,9 +1,9 @@
 // src/pages/ProjectsPage.jsx
 
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Container, Card, Row, Col, Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -12,12 +12,10 @@ function ProjectsPage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(
-          "https://faizan8108.pythonanywhere.com/api/projects/"
-        );
+        const response = await api.get("/projects/");
         setProjects(response.data);
       } catch (error) {
-        console.error("There was an error fetching the projects!", error);
+        console.error("❌ Error fetching projects:", error);
       }
       setLoading(false);
     };
@@ -37,13 +35,14 @@ function ProjectsPage() {
       <Row className="g-4">
         {projects.length > 0 ? (
           projects.map((project) => (
-            <Col key={project.id} sm={12} md={6} lg={4}>
+            <Col key={project.slug} sm={12} md={6} lg={4}>
               <Card className="h-100 shadow-sm border-0">
+
                 {project.image && (
                   <Card.Img
                     variant="top"
                     src={
-                      project.image?.startsWith("http")
+                      project.image.startsWith("http")
                         ? project.image
                         : `https://faizan8108.pythonanywhere.com${project.image}`
                     }
@@ -54,6 +53,7 @@ function ProjectsPage() {
                     alt={project.title}
                   />
                 )}
+
                 <Card.Body className="d-flex flex-column">
                   <div className="mb-2">
                     {project.category && (
@@ -76,25 +76,31 @@ function ProjectsPage() {
                     )}
                   </div>
 
-                  <Card.Title className="fw-bold text-primary">{project.title}</Card.Title>
+                  <Card.Title className="fw-bold text-primary">
+                    {project.title}
+                  </Card.Title>
+
                   <Card.Text className="text-muted small mb-3">
                     {project.description.length > 150
                       ? `${project.description.substring(0, 150)}...`
                       : project.description}
                   </Card.Text>
-                  {project.project_timeline && (
-                  <p className="text-secondary small mb-1">
-                  <strong>Timeline:</strong> {project.project_timeline}
-                  </p>
-                  )}
 
-                   {project.impact_statistics && (
-                  <p className="text-secondary small mb-2">
-                    <strong>Impact:</strong> {project.impact_statistics}
+                  {/* ✅ tags preview */}
+                  {project.tags?.length > 0 && (
+                    <p className="small text-muted">
+                      <strong>Tags:</strong> {project.tags.join(", ")}
                     </p>
                   )}
 
-                  <Link to={`/projects/${project.id}`} className="mt-auto">
+                  {/* ✅ progress preview */}
+                  {project.progress_percent !== null && (
+                    <p className="small text-primary fw-semibold">
+                      Progress: {project.progress_percent}%
+                    </p>
+                  )}
+
+                  <Link to={`/projects/${project.slug}`} className="mt-auto">
                     <Button variant="outline-primary" size="sm">
                       Read More
                     </Button>
@@ -104,35 +110,9 @@ function ProjectsPage() {
             </Col>
           ))
         ) : (
-          <p>No projects found. Go to your Django admin to add some!</p>
+          <p>No projects found. Add new projects in Admin.</p>
         )}
       </Row>
-      {/* 🌍 Impact Section */}
-<section className="my-5 py-5 bg-light text-center rounded shadow-sm">
-  <h2 className="fw-bold text-primary mb-3">Our Impact</h2>
-  <p className="text-secondary mb-5">
-    Over the years, our initiatives have touched countless lives and built stronger communities.
-  </p>
-
-  <Row className="justify-content-center text-center">
-    <Col xs={6} md={3} className="mb-4">
-      <h3 className="fw-bold text-success display-6">500+</h3>
-      <p className="text-muted">Households Accessing Clean Water</p>
-    </Col>
-    <Col xs={6} md={3} className="mb-4">
-      <h3 className="fw-bold text-success display-6">200+</h3>
-      <p className="text-muted">Children Educated</p>
-    </Col>
-    <Col xs={6} md={3} className="mb-4">
-      <h3 className="fw-bold text-success display-6">50+</h3>
-      <p className="text-muted">Active Volunteers</p>
-    </Col>
-    <Col xs={6} md={3} className="mb-4">
-      <h3 className="fw-bold text-success display-6">10+</h3>
-      <p className="text-muted">Ongoing Projects</p>
-    </Col>
-  </Row>
-</section>
     </Container>
   );
 }

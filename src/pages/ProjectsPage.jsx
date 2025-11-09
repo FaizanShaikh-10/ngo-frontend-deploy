@@ -107,6 +107,32 @@ function ProjectsPage() {
           <p>No projects found. Go to your Django admin to add some!</p>
         )}
       </Row>
+      {/* 🌍 Impact Section */}
+<section className="my-5 py-5 bg-light text-center rounded shadow-sm">
+  <h2 className="fw-bold text-primary mb-3">Our Impact</h2>
+  <p className="text-secondary mb-5">
+    Over the years, our initiatives have touched countless lives and built stronger communities.
+  </p>
+
+  <Row className="justify-content-center text-center">
+    <Col xs={6} md={3} className="mb-4">
+      <h3 className="fw-bold text-success display-6">500+</h3>
+      <p className="text-muted">Households Accessing Clean Water</p>
+    </Col>
+    <Col xs={6} md={3} className="mb-4">
+      <h3 className="fw-bold text-success display-6">200+</h3>
+      <p className="text-muted">Children Educated</p>
+    </Col>
+    <Col xs={6} md={3} className="mb-4">
+      <h3 className="fw-bold text-success display-6">50+</h3>
+      <p className="text-muted">Active Volunteers</p>
+    </Col>
+    <Col xs={6} md={3} className="mb-4">
+      <h3 className="fw-bold text-success display-6">10+</h3>
+      <p className="text-muted">Ongoing Projects</p>
+    </Col>
+  </Row>
+</section>
     </Container>
   );
 }

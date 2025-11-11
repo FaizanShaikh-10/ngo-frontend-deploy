@@ -5,6 +5,19 @@ import { useState } from "react";
 import api from "../services/api";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+
+  async function handleSubscribe(e) {
+    e.preventDefault();
+    try {
+      await api.post("/newsletter/", { email });
+      alert("Subscribed ✅");
+      setEmail("");
+    } catch (err) {
+      alert("Subscription failed ❌");
+    }
+  }
+
   return (
     <footer className="bg-dark text-white pt-5 pb-3 mt-5">
       {/* Footer Links Section */}
@@ -49,21 +62,9 @@ function Footer() {
           <Col md={3} className="mb-3">
             <h6 className="fw-bold">Follow Us</h6>
             <ul className="list-unstyled">
-              <li>
-                <a href="#" className="text-white text-decoration-none">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white text-decoration-none">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white text-decoration-none">
-                  Instagram
-                </a>
-              </li>
+              <li><a href="#" className="text-white text-decoration-none">Facebook</a></li>
+              <li><a href="#" className="text-white text-decoration-none">Twitter</a></li>
+              <li><a href="#" className="text-white text-decoration-none">Instagram</a></li>
             </ul>
           </Col>
 
@@ -71,11 +72,14 @@ function Footer() {
           <Col md={3}>
             <h6 className="fw-bold">Newsletter</h6>
             <p className="small">Stay updated with our latest news.</p>
-            <form>
+
+            <form onSubmit={handleSubscribe}>
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="form-control mb-2"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <button type="submit" className="btn btn-primary w-100">
                 Subscribe
@@ -90,32 +94,6 @@ function Footer() {
         © {new Date().getFullYear()} Light After Rain NGO. All rights reserved.
       </div>
     </footer>
-  );
-}
-function Footer() {
-  const [email, setEmail] = useState("");
-
-  async function handleSubscribe(e) {
-    e.preventDefault();
-    try {
-      await api.post("/newsletter/", { email });
-      alert("Subscribed ✅");
-      setEmail("");
-    } catch (err) {
-      alert("Subscription failed ❌");
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubscribe}>
-      <input
-        type="email"
-        placeholder="Enter your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button type="submit">Subscribe</button>
-    </form>
   );
 }
 

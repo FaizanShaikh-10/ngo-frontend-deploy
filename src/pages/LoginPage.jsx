@@ -91,6 +91,12 @@ function LoginPage() {
                   Are you an admin? <a href="https://faizan8108.pythonanywhere.com/admin">Go to Admin Panel</a>
                 </small>
               </div>
+              
+              <div style={{ marginTop: "10px" }}>
+                <p>
+                  <a href="/forgot-password">Forgot password?</a>
+                </p>
+              </div>              
             </Card.Body>
           </Card>
         </Col>

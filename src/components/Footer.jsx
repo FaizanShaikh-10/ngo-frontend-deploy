@@ -1,6 +1,8 @@
 // src/components/Footer.jsx
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import api from "../services/api";
 
 function Footer() {
   return (
@@ -88,6 +90,32 @@ function Footer() {
         © {new Date().getFullYear()} Light After Rain NGO. All rights reserved.
       </div>
     </footer>
+  );
+}
+function Footer() {
+  const [email, setEmail] = useState("");
+
+  async function handleSubscribe(e) {
+    e.preventDefault();
+    try {
+      await api.post("/newsletter/", { email });
+      alert("Subscribed ✅");
+      setEmail("");
+    } catch (err) {
+      alert("Subscription failed ❌");
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubscribe}>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button type="submit">Subscribe</button>
+    </form>
   );
 }
 

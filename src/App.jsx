@@ -20,7 +20,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import RegisterPage from "./pages/RegisterPage";
-
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
   return (
@@ -42,6 +42,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/reset-password" element={<ForgotPasswordPage />} />
           </Routes>
         </Container>
       </main>
